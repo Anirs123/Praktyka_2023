@@ -25,3 +25,8 @@ p{
     position: relative;
     left: 50px;
 }
+img{
+    position: fixed;
+    left: 84.5%;
+    bottom: 1.5%;
+}
