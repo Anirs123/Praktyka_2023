@@ -1,0 +1,27 @@
+*{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+body{
+    background-color: rgb(27, 27, 27);
+    color: white;
+}
+h1{
+    text-align: center;
+    font-size: 30px;
+    color:rgb(175, 175, 255);
+    text-shadow: 2px 2px #593996;
+}
+.punkty{
+    text-shadow: 2px 2px #5c3d3d;
+}
+.ppunkty{
+    text-shadow: 2px 2px #1a502ab2;
+}
+p{
+    color: rgb(25, 167, 25);
+    display: inline;
+    position: relative;
+    left: 50px;
+}

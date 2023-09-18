@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Dokumentacja</title>
+</head>
+<body>
+    <h1>DOKUMENTACJA DJANGO SZYMON BYLIŃSKI</h1>
+    <ol>
+        <li class="punkty">Instalacja pythona</li>
+        <li class="punkty">Instalacja Django</li>
+        <ul>
+            <li class="ppunkty">python -m venv venv</li>
+            <p>~venv - virtual environment~</p><br>
+            <p>~(te drugie venv to nazwa naszego środowiska)~</p>
+        </ul>
+        <li class="punkty">Uruchamianie srodowiska do zainstalowania Django</li>    
+        <ul>
+            <li class="ppunkty">venv\Scripts\activate.bat</li>
+            <p>~Wchodzimy do ścieżki i uruchamiamy plik active.bat~</p>
+            <li class="ppunkty">pip install "Django==3.0.*"</li>
+            <p>~Instalacja Django za pomocą polecenia~</p>
+        </ul>
+        <li class="punkty">Tworzenie pierwszego projektu</li>
+        <ul>
+            <li class="ppunkty">django-admin startproject mysite .</li>
+            <p>~mysite to nazwa projektu~</p><br>
+            <p>~django-admin to polecenie wykonywane za pomoca admina~</p><br>
+            <p>~kropka na końcu oznacza uworzenie bez tworzenia dodatkowego folderu~</p>
+            <li class="ppunkty">python manage.py migrate</li>
+            <p>~utworzy to naszą lokalną baze danych django~</p>
+            <li class="ppunkty">python manage.py runserver</li>
+            <p>~uruchomi to nasz server django~</p><br>
+            <p>~localhost:8000 oraz localhost:8000/admin~</p>
+            <li class="ppunkty">python manage.py runserver 127.0.0.1:8001 --settings=mysite.settings</li>
+            <p>~uruchamianie servera z innego portu niz domyslny~</p>
+        </ul>
+        <li class="punkty">Tworzenie aplikacji</li>
+        <ul>
+            <li class="ppunkty">python manage.py startapp blog</li>
+            <p>~Tworzymy aplikacje o nazwie blog~</p>
+        </ul>
+        <li></li>
+        <ul>
+            <li></li>
+        </ul>
+        <li></li>
+        <ul>
+            <li></li>
+        </ul>
+        <li></li>
+        <ul>
+            <li></li>
+        </ul>
+        
+        <!-- <li></li>
+        <ul>
+            <li></li>
+        </ul> -->
+    </ol>
+</body>
+</html>
