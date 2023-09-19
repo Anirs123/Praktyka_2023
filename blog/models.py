@@ -10,6 +10,7 @@ class PublishedManager(models.Manager):
                         self).get_queryset()\
                             .filter(status='published')
 
+from django.urls import reverse
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -37,3 +38,10 @@ class Post(models.Model):
 
     objects = models.Manager()
     published = PublishedManager()
+
+    def get_absolute_url(self):
+           return reverse('blog:post_detail',
+                          args=[self.publish.year,
+                                self.publish.strftime('%m'),
+                                self.publish.strftime('%d'),
+                                self.slug])
