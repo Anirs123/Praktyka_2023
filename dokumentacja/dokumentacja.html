@@ -105,7 +105,7 @@
                 from .models import Post
 
                 @admin.register(Post)
-                class PostAdmin(admin.modelAdmin):
+                class PostAdmin(admin.ModelAdmin):
                     list_display = ('title', 'slug', 'author', 'publish', 'status')
                     list_filter = ('status', 'created', 'publish', 'author')
                     search_fields = ('title', 'body')
@@ -118,9 +118,101 @@
         <li>Tworzenie obiektów</li>
         <ul>
             <li>python manage.py shell</li>
-                <li>wa</li>
+            <ul>
+                <li>>>> from django.contrib.auth.models import User</li>
+                <li>>>> from blog.models import Post</li>
+                <li>>>> user = User.objects.get(username='admin')</li>
+                <li>>>> post = Post(title="Inny post", slug="another-post", body="Treść posta.", author=user)</li>
+                <li>>>> post.save()</li>
+            </ul>
+        </ul>
+        <li>Aktualizowanie obiektów</li>
+        <ul>
+            <li>>>> post.title = "Nowy tytul"</li>
+            <li>>>> post.save()</li>
+        </ul>
+        <li>Pobieranie obiektów</li>
+        <ul>
+            <li>>>> all_posts = Post.objects.all()</li>
+            <li>>>> all_posts</li>
+        </ul>
+        <li>Filtrowanie obiektow za pomoca filter()</li>
+        <ul>
+            <li>>>> Post.objects.filter(publish__year=2023)</li>
+            <li>>>> Post.objects.filter(publish__year=2023, author__username='admin')</li>
+            <p>~jest to równoznaczne z budowaniem obiektów QuerySet~</p><br>
+            <p>>>> Post.objects.filter(publish__year=2023) \</p><br>
+            <p>>>>             .filter(author__username='admin')</p>
+        </ul>
+        <li>wykluczenie exclude()</li>
+        <ul>
+            <li>>>> Post.objects.filter(publish__year=2023).exclude(title__startswith="Dlaczego")</li>
+            <p>~dajemy po kropce exclude poniewaz to obiekt a nie kolejny element~</p>
+        </ul>
+        <li>Metody order_by()</li>
+        <ul>
+            <li>Post.objects.order_by('title')</li>
+            <p>~uporządkuje je rosnąco~</p>
+            <li>Post.objects.order_by('-title')</li>
+            <p>~uporządkuje je malejąco~</p>
+        </ul>
+        <li>Usunięcie obiektu</li>
+        <ul>
+            <li>post = Post.objects.get(id=1)</li>
+            <li>post.delete()</li>
+        </ul>
+        <li>Utworzenie menedżerów modelu</li>
+        <ul>
+            <li>KOD ŹRÓDŁOWY DO PLIKU models.py</li>
+            <!-- 
+                from django.db import models
+
+                # Create your models here.
+                from django.utils import timezone
+                from django.contrib.auth.models import User
+
+                class PublishedManager(models.Manager):
+                                    def get_queryset(self):
+                                        return super(PublishedManager,
+                                        self).get_queryset()\
+                                            .filter(status='published')
+
+                class Post(models.Model):
+                    STATUS_CHOICES = (
+                        ('draft', 'Draft'),
+                        ('published', 'Published'),
+                    )
+                    title = models.CharField(max_length=250)
+                    slug = models.SlugField(max_length=250,
+                                            unique_for_date='publish')
+                    author = models.ForeignKey(User,
+                                            on_delete=models.CASCADE,
+                                            related_name='blog_posts')
+                    body = models.TextField()
+                    publish = models.DateTimeField(default=timezone.now)
+                    created = models.DateTimeField(auto_now_add=True)
+                    updated = models.DateTimeField(auto_now=True)
+                    status = models.CharField(max_length=10,
+                                            choices=STATUS_CHOICES,
+                                            default='draft')
+                    
+                    class Meta:
+                        ordering = ('-publish',)
+
+                    def __str__(self):
+                        return self.title
+
+                    objects = models.Manager()
+                    published = PublishedManager()
+
+             -->
+             <li>python manage.py shell</li>
+             <p>~Pobieranie wszystkich opublikowanych postow ktorych tytul zaczyna sie od Kto \/ poniżej~</p>
+             <li>>>> from blog.models import Post</li>
+             <li>>>> Post.published.filter(title__startswith='Kto')</li>
         </ul>
         
+
         <!-- <li></li>
         <ul>
             <li></li>
